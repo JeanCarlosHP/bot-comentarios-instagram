@@ -1,0 +1,65 @@
+QLabel {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+}
+
+QLabel#label_link {
+    font-size: 20px;
+}
+
+QLabel#label_comentando {
+    font-size: 12px;
+}
+
+QLabel#label_vezes_comentadas {
+    font-size: 12px;
+}
+
+QLineEdit {
+    background-color: rgb(37, 38, 44);
+    color: rgb(255, 255, 255);
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    border: 1px solid rgb(61, 81, 250);
+    border-radius: 2px;
+}
+
+QPushButton#botao_iniciar {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    background-color: #3d51fa;
+    border-radius: 3px;
+}
+
+QPushButton#botao_iniciar:hover {
+    background-color: rgb(86, 103, 255);
+}
+
+QPushButton#botao_iniciar:pressed {
+    background-color: rgb(36, 48, 155);
+}
+
+QPushButton#botao_olho {
+    background-color: black;
+    border-radius: 1px;
+}
+
+QSlider::handle:horizontal {
+    background-color: rgb(61, 81, 250);
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+QSlider::handle:hover:horizontal {
+    background-color: rgb(86, 103, 255);
+}
+
+QSlider::handle:pressed:horizontal {
+    background-color: rgb(36, 48, 155);
+}
