@@ -2,4 +2,4 @@
 
 - Interface
 
-![imagem-interface](img-README/img-1.png?raw=true "Title")
+![imagem-interface](img-README/img-1.png?raw=true "Interface do robô")
