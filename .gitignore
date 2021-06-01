@@ -1,3 +1,4 @@
 geckodriver.log
 test.py
 .vscode
+__pycache__/
