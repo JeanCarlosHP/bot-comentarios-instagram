@@ -9,9 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from bot import InstagramBot
 
 
 class Ui_MainWindow(object):
+    bot = InstagramBot()
 
     def setupUi(self, MainWindow):
 
@@ -142,6 +144,10 @@ class Ui_MainWindow(object):
         self.slider_perfis.valueChanged[int].connect(self.valor_slide_perfis)
         self.slider_minutos.valueChanged[int].connect(self.valor_slide_minutos)
 
+        self.label_comentando.setText(f'Comentando: {self.bot.comentario}')
+        self.label_vezes_comentadas.setText(
+            f'Vezes comentadas: {self.bot.vezes_comentadas}')
+
     def valor_slide_perfis(self, value):
         perfis = str(self.slider_perfis.value())
         self.label_slider_perfis.setText(perfis)
@@ -166,9 +172,28 @@ class Ui_MainWindow(object):
 
     def funcao_botao_iniciar(self, event):
         if self.botao_iniciar.text() == "Iniciar Robô":
-            self.botao_iniciar.setText("Parar Robô")
+            self.botao_iniciar.setText('Parar Robô')
+
+            self.bot.usuario = self.usuario
+            self.bot.senha = self.senha
+            self.bot.link = self.link
+            self.bot.quantidade_perfis = self.slider_perfis.value()
+            self.bot.comentar_cada_minuto = self.slider_minutos.value()
+            self.bot.login()
         else:
             self.botao_iniciar.setText("Iniciar Robô")
+
+    @property
+    def link(self):
+        return self.input_link.text()
+
+    @property
+    def usuario(self):
+        return self.input_usuario.text()
+
+    @property
+    def senha(self):
+        return self.input_senha.text()
 
 
 if __name__ == "__main__":
