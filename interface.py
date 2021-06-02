@@ -130,27 +130,28 @@ class Ui_MainWindow(object):
         self.label_senha.setText("Senha:")
         self.label_comentar_perfis.setText(
             "Quantidade de perfis por comentário")
-        self.label_slider_perfis.setText(str(self.slider_perfis.value()))
+        self.label_slider_perfis.setText('1')
+        self.label_slider_minutos.setText('1')
+
+        self.slider_perfis.valueChanged[int].connect(self.value_slider_perfis)
+        self.slider_minutos.valueChanged[int].connect(self.value_slider_minutes)
+
         self.label_comentar_minutos.setText("Comentar a cada quantos minutos")
-        self.label_slider_minutos.setText(str(self.slider_minutos.value()))
         self.botao_iniciar.setText("Iniciar Robô")
         self.label_comentando.setText("Comentando:")
         self.label_vezes_comentadas.setText("Vezes comentadas:")
-
-        self.slider_perfis.valueChanged[int].connect(self.valor_slide_perfis)
-        self.slider_minutos.valueChanged[int].connect(self.valor_slide_minutos)
 
         self.label_comentando.setText(f'Comentando: {self.bot.comentario}')
         self.label_vezes_comentadas.setText(
             f'Vezes comentadas: {self.bot.vezes_comentadas}')
 
-    def valor_slide_perfis(self, value):
+    def value_slider_perfis(self):
         perfis = str(self.slider_perfis.value())
         self.label_slider_perfis.setText(perfis)
 
-    def valor_slide_minutos(self, value):
-        minutos = str(self.slider_minutos.value())
-        self.label_slider_minutos.setText(minutos)
+    def value_slider_minutes(self):
+        minutes = str(self.slider_minutos.value())
+        self.label_slider_minutos.setText(minutes)
 
     def mask_label_eye(self, event):
         if self.idSenha == 1:
