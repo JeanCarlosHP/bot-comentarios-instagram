@@ -74,16 +74,12 @@ class Ui_MainWindow(object):
         self.label_senha.setObjectName("label_senha")
 
         self.input_senha = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_senha.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.idSenha = 1
         self.input_senha.setGeometry(QtCore.QRect(130, 130, 200, 20))
         self.input_senha.setObjectName("input_senha")
 
         self.label_olho = QtWidgets.QLabel(self.centralwidget)
-        self.label_olho.mousePressEvent = self.mascara_label_olho
-        img = QtGui.QPixmap("imagens\olho_senha.png")
-        img = img.scaled(QtCore.QSize(22, 11))
-        self.label_olho.setPixmap(img)
+        self.label_olho.mousePressEvent = self.mask_label_eye
+        self.set_image_mask_pass('olho_senha.png', 1)
         self.label_olho.setGeometry(QtCore.QRect(340, 136, 22, 11))
 
         self.line = QtWidgets.QFrame(self.centralwidget)
@@ -156,19 +152,23 @@ class Ui_MainWindow(object):
         minutos = str(self.slider_minutos.value())
         self.label_slider_minutos.setText(minutos)
 
-    def mascara_label_olho(self, event):
+    def mask_label_eye(self, event):
         if self.idSenha == 1:
-            img = QtGui.QPixmap("imagens\olho_normal.png")
-            img = img.scaled(QtCore.QSize(22, 11))
-            self.label_olho.setPixmap(img)
-            self.input_senha.setEchoMode(QtWidgets.QLineEdit.Normal)
-            self.idSenha = 0
-        else:
-            img = QtGui.QPixmap("imagens\olho_senha.png")
-            img = img.scaled(QtCore.QSize(22, 11))
-            self.label_olho.setPixmap(img)
-            self.input_senha.setEchoMode(QtWidgets.QLineEdit.Password)
-            self.idSenha = 1
+            return self.set_image_mask_pass('olho_normal.png', 0)
+
+        return self.set_image_mask_pass('olho_senha.png', 1)
+
+    def set_image_mask_pass(self, image='olho_normal.png', type_pass=1):
+        idPasswords = {
+            0: QtWidgets.QLineEdit.Normal,
+            1: QtWidgets.QLineEdit.Password
+        }
+
+        img = QtGui.QPixmap(f'imagens\{image}')
+        img = img.scaled(QtCore.QSize(22, 11))
+        self.label_olho.setPixmap(img)
+        self.input_senha.setEchoMode(idPasswords[type_pass])
+        self.idSenha = type_pass
 
     def funcao_botao_iniciar(self, event):
         if self.botao_iniciar.text() == "Iniciar Robô":
