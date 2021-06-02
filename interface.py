@@ -178,8 +178,8 @@ class Ui_MainWindow(object):
             self.bot.usuario = self.usuario
             self.bot.senha = self.senha
             self.bot.link = self.link
-            self.bot.quantidade_perfis = self.slider_perfis.value()
-            self.bot.comentar_cada_minuto = self.slider_minutos.value()
+            self.bot.quantidade_perfis = self.quantidade_perfis
+            self.bot.comentar_cada_minuto = self.minutes
             self.bot.login()
         else:
             self.botao_iniciar.setText("Iniciar Robô")
@@ -195,6 +195,14 @@ class Ui_MainWindow(object):
     @property
     def senha(self):
         return self.input_senha.text()
+    
+    @property
+    def quantidade_perfis(self):
+        return self.slider_perfis.value()
+    
+    @property
+    def minutes(self):
+        return self.slider_minutos.value()
 
 
 if __name__ == "__main__":
